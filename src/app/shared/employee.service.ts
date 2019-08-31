@@ -8,6 +8,8 @@ import { HttpClient } from '@angular/common/http';
 export class EmployeeService {
   formData: Employee;
   list: Employee[];
+  private List = [];
+
   readonly rootURL = 'http://localhost:49823/api/';
 
   constructor(private http: HttpClient) {}
@@ -17,6 +19,10 @@ export class EmployeeService {
       .get(this.rootURL + 'Employee')
       .toPromise()
       .then(res => (this.list = res as Employee[]));
+  }
+
+  getEmployee() {
+    return this.http.get(this.rootURL + 'Employee');
   }
 
   postEmployee(formData: Employee) {
