@@ -1,18 +1,3 @@
-<!-- <table class="table table-hover">
-  <tr *ngFor="let emp of service.list">
-    <td (click)="populateForm(emp)">[{{ emp.EMPCode }}]-{{ emp.FullName }}</td>
-    <td (click)="populateForm(emp)">{{ emp.Position }}</td>
-    <td (click)="populateForm(emp)">{{ emp.Mobile }}</td>
-    <td>
-      <button
-        (click)="onDelete(emp.EmployeeID)"
-        class="btn btn-sm btn-outline-danger"
-      >
-        X
-      </button>
-    </td>
-  </tr>
-</table> -->
 <mat-form-field>
   <input
     matInput
@@ -22,34 +7,55 @@
 </mat-form-field>
 
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource" matSort>
+  <table mat-table [dataSource]="employeeList" matSort>
     <!-- ID Column -->
-    <ng-container matColumnDef="code">
+    <ng-container matColumnDef="EMPCode">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>EMPCode</th>
-      <td mat-cell *matCellDef="let row">{{ row.EMPCode }}</td>
+      <td mat-cell *matCellDef="let emp">{{ emp.EMPCode }}</td>
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="name">
+    <ng-container matColumnDef="FullName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-      <td mat-cell *matCellDef="let row">{{ row.FullName }}</td>
+      <td mat-cell *matCellDef="let emp">{{ emp.FullName }}</td>
     </ng-container>
 
     <!-- Color Column -->
-    <ng-container matColumnDef="position">
+    <ng-container matColumnDef="Position">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Position</th>
-      <td mat-cell *matCellDef="let row">{{ row.Position }}</td>
+      <td mat-cell *matCellDef="let emp">{{ emp.Position }}</td>
     </ng-container>
 
     <!-- Mobile -->
-    <ng-container matColumnDef="mobile">
+    <ng-container matColumnDef="Mobile">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</th>
-      <td mat-cell *matCellDef="let row">{{ row.Mobile }}</td>
+      <td mat-cell *matCellDef="let emp">{{ emp.Mobile }}</td>
     </ng-container>
+
+    <!-- Edit -->
+    <ng-container matColumnDef="Edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="">
+        <i class="material-icons edit-icon">edit</i>
+      </td>
+    </ng-container>
+
+    <!-- Delete -->
+    <ng-container matColumnDef="Delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="">
+        <button mat-button onclick="onDelete(emp.EmployeeID)">
+          <i class="material-icons delete-icon">delete</i>
+        </button>
+      </td></ng-container
+    >
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]='5'></mat-paginator>
+  <mat-paginator
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+  ></mat-paginator>
 </div>

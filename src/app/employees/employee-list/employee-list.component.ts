@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { EmployeeService } from 'src/app/shared/employee.service';
 import { Employee } from 'src/app/shared/employee.model';
 import { MatPaginator } from '@angular/material/paginator';
@@ -10,31 +10,41 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.css']
 })
-export class EmployeeListComponent implements OnInit {
-  dataSource: MatTableDataSource<Employee>;
-  listed: Employee;
-  displayedColumns: string[] = ['code', 'name', 'position', 'mobile'];
+export class EmployeeListComponent implements OnInit, AfterViewInit {
+  employeeList = new MatTableDataSource<Employee>();
+  displayedColumns: string[] = [
+    'EMPCode',
+    'FullName',
+    'Position',
+    'Mobile',
+    'Edit',
+    'Delete'
+  ];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private service: EmployeeService) {
-    this.service.getEmployee().subscribe((res: any[]) => {
-      this.listed = res;
-      this.dataSource = new MatTableDataSource(this.listed);
+  constructor(private service: EmployeeService) {}
+
+  ngOnInit() {}
+
+  ngAfterViewInit(): void {
+    this.getAllEmployee();
+    this.employeeList.sort = this.sort;
+    this.employeeList.paginator = this.paginator;
+  }
+
+  getAllEmployee() {
+    this.service.getEmployee().subscribe(data => {
+      this.employeeList.data = data as Employee[];
     });
   }
 
-  ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.employeeList.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    if (this.employeeList.paginator) {
+      this.employeeList.paginator.firstPage();
     }
   }
 
@@ -44,8 +54,8 @@ export class EmployeeListComponent implements OnInit {
 
   onDelete(id: number) {
     if (confirm('Are you sure to delete this record?')) {
-      this.service.deleteEmployee(id).subscribe(res => {
-        this.service.refreshList();
+      this.service.deleteEmployee(id).subscribe(() => {
+        this.getAllEmployee();
       });
     }
   }

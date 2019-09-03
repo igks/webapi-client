@@ -8,7 +8,6 @@ import { HttpClient } from '@angular/common/http';
 export class EmployeeService {
   formData: Employee;
   list: Employee[];
-  private List = [];
 
   readonly rootURL = 'http://localhost:49823/api/';
 

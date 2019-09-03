@@ -1,0 +1,18 @@
+table {
+  width: 100%;
+}
+th.mat-header-cell {
+  background-color: lightskyblue;
+  color: white;
+  font-size: 1.2em;
+  padding: 10px;
+}
+td.mat-cell {
+  padding: 3px 6px 3px 6px;
+}
+.edit-icon{
+  color: orange;
+}
+.delete-icon{
+  color: red;
+}
