@@ -26,6 +26,7 @@ import { EmployeeService } from './shared/employee.service';
     AngularmaterialModule
   ],
   providers: [EmployeeService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [EmployeeComponent]
 })
 export class AppModule {}

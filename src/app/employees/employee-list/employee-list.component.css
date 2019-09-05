@@ -10,9 +10,9 @@ th.mat-header-cell {
 td.mat-cell {
   padding: 3px 6px 3px 6px;
 }
-.edit-icon{
+.edit-icon {
   color: orange;
 }
-.delete-icon{
+.delete-icon {
   color: red;
 }

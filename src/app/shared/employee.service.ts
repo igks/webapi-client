@@ -1,23 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Employee } from './employee.model';
 import { HttpClient } from '@angular/common/http';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
+  employeeList = new MatTableDataSource<Employee>();
   formData: Employee;
-  list: Employee[];
 
   readonly rootURL = 'http://localhost:49823/api/';
 
   constructor(private http: HttpClient) {}
 
   refreshList() {
-    this.http
-      .get(this.rootURL + 'Employee')
-      .toPromise()
-      .then(res => (this.list = res as Employee[]));
+    // this.http
+    //   .get(this.rootURL + 'Employee')
+    //   .toPromise()
+    //   .then(res => (this.list = res as Employee[]));
+
+    this.getEmployee().subscribe(data => {
+      this.employeeList.data = data as Employee[];
+    });
   }
 
   getEmployee() {
