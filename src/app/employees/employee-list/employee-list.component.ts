@@ -79,4 +79,12 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
       this.getAllEmployee();
     });
   }
+  onEdit(emp: Employee) {
+    const dialogRef = this.dialog.open(EmployeeComponent);
+    this.populateForm(emp);
+    dialogRef.afterClosed().subscribe(() => {
+      this.getAllEmployee();
+    });
+    console.log(emp);
+  }
 }

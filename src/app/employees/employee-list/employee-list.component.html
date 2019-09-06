@@ -46,19 +46,16 @@
 
     <!-- Edit -->
     <ng-container matColumnDef="Edit">
-      <th mat-header-cell *matHeaderCellDef [attr.colspan]="2">
-         <button
-            mat-button
-            mat-icon-button
-            aria-label="Clear"
-            (click)="onAdd()"
-          >
-            <mat-icon>person_add</mat-icon>
-          </button>
-
+      <th colspan="3" mat-header-cell *matHeaderCellDef>
+        <button mat-button mat-icon-button aria-label="Clear" (click)="onAdd()">
+          <mat-icon>person_add</mat-icon>
+          Add
+        </button>
       </th>
-      <td mat-cell *matCellDef="">
-        <i class="material-icons edit-icon">edit</i>
+      <td mat-cell *matCellDef="let emp">
+        <button mat-button (click)="onEdit(emp)">
+<mat-icon class="edit-icon">edit</mat-icon>
+        </button>
       </td>
     </ng-container>
 
@@ -67,7 +64,7 @@
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let emp">
         <button mat-button (click)="onDelete(emp.EmployeeID)">
-          <i class="material-icons delete-icon">delete</i>
+          <mat-icon class="delete-icon">delete</mat-icon>
         </button>
       </td></ng-container
     >
