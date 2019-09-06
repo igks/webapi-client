@@ -9,6 +9,8 @@ import { MatTableDataSource } from '@angular/material/table';
 export class EmployeeService {
   employeeList = new MatTableDataSource<Employee>();
   formData: Employee;
+  dialogTitle: string;
+  dialogSubmit: string;
 
   readonly rootURL = 'http://localhost:49823/api/';
 
@@ -42,5 +44,15 @@ export class EmployeeService {
 
   deleteEmployee(id: number) {
     return this.http.delete(this.rootURL + 'Employee/' + id);
+  }
+
+  resetForm() {
+    this.formData = {
+      EmployeeID: null,
+      FullName: '',
+      Position: '',
+      EMPCode: '',
+      Mobile: ''
+    };
   }
 }

@@ -74,17 +74,31 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     this.applyFilter(this.searchKey);
   }
   onAdd() {
-    const dialogRef = this.dialog.open(EmployeeComponent);
-    dialogRef.afterClosed().subscribe(() => {
-      this.getAllEmployee();
-    });
+    this.service.dialogTitle = 'Add New Employee';
+    this.service.dialogSubmit = 'SUMBIT';
+    this.service.resetForm();
+    this.raisedDialog();
+    // const dialogRef = this.dialog.open(EmployeeComponent);
+    // dialogRef.afterClosed().subscribe(() => {
+    //   this.getAllEmployee();
+    // });
   }
-  onEdit(emp: Employee) {
-    const dialogRef = this.dialog.open(EmployeeComponent);
+  onEdit(emp) {
+    this.service.dialogTitle = 'Modify Existing Employee';
+    this.service.dialogSubmit = 'UPDATE';
     this.populateForm(emp);
+    this.raisedDialog();
+    // const dialogRef = this.dialog.open(EmployeeComponent);
+    // dialogRef.afterClosed().subscribe(() => {
+    //   this.getAllEmployee();
+    // });
+  }
+  raisedDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    const dialogRef = this.dialog.open(EmployeeComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(() => {
       this.getAllEmployee();
     });
-    console.log(emp);
   }
 }

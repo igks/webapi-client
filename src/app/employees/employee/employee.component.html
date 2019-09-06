@@ -1,3 +1,15 @@
+<mat-toolbar>
+  <span>{{ dialogTitle }}</span>
+  <span class="fill-remain-space"></span>
+  <button
+    class="btn-dialog-close"
+    mat-stroked-button
+    (click)="onCloseDialog()"
+    tabindex="-1"
+  >
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
 <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
   <input
     type="hidden"
@@ -53,7 +65,7 @@
       [disabled]="form.invalid"
       class="btn btn-lg btn-block"
     >
-      SUBMIT
+      {{ dialogSubmit }}
     </button>
   </div>
 </form>
