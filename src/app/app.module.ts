@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-// import { AngularmaterialModule } from './material/angularmaterial/angularmaterial.module';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularmaterialModule } from './material/angularmaterial/angularmaterial.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { EmployeesComponent } from './employees/employees.component';
@@ -21,11 +21,12 @@ import { EmployeeService } from './shared/employee.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
-    // BrowserAnimationsModule,
-    // AngularmaterialModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    AngularmaterialModule
   ],
   providers: [EmployeeService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [EmployeeComponent]
 })
 export class AppModule {}
