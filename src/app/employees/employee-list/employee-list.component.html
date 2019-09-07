@@ -54,7 +54,7 @@
       </th>
       <td mat-cell *matCellDef="let emp">
         <button mat-button (click)="onEdit(emp)">
-<mat-icon class="edit-icon">edit</mat-icon>
+          <mat-icon class="edit-icon">edit</mat-icon>
         </button>
       </td>
     </ng-container>
@@ -69,8 +69,19 @@
       </td></ng-container
     >
 
+    <ng-container matColumnDef="noData">
+      <td mat-footer-cell *matFooterCellDef colspan="6">
+        No Data Available...
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr
+      mat-footer-row
+      *matFooterRowDef="['noData']"
+      [ngClass]="{ hide: employeeList.filteredData != null }"
+    ></tr>
   </table>
 
   <mat-paginator

@@ -16,3 +16,6 @@ td.mat-cell {
 .delete-icon {
   color: red;
 }
+.hide{
+  display: none;
+}
