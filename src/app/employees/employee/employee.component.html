@@ -1,3 +1,4 @@
+<!-- Create the box dialog title and close button -->
 <mat-toolbar>
   <span>{{ dialogTitle }}</span>
   <span class="fill-remain-space"></span>
@@ -10,55 +11,64 @@
     <mat-icon>clear</mat-icon>
   </button>
 </mat-toolbar>
+
+<!-- Create the form UI -->
 <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+  <!-- Input hidden as reference -->
   <input
     type="hidden"
     name="EmployeeID"
     #EmployeeID="ngModel"
-    [(ngModel)]="service.formData.EmployeeID"
+    [(ngModel)]="formData.EmployeeID"
   />
+  <!-- Fullname input field -->
   <div class="form-group">
     <label>FULL NAME</label>
     <input
       name="FullName"
       #FullName="ngModel"
-      [(ngModel)]="service.formData.FullName"
+      [(ngModel)]="formData.FullName"
       class="form-control"
       required
     />
+    <!-- validation error messege -->
     <div class="validation-error" *ngIf="FullName.invalid && FullName.touched">
       This field is required.
     </div>
   </div>
+  <!-- Position input field -->
   <div class="form-group">
     <label>POSITION</label>
     <input
       name="Position"
       #Position="ngModel"
-      [(ngModel)]="service.formData.Position"
+      [(ngModel)]="formData.Position"
       class="form-control"
     />
   </div>
+  <!-- Employee code input field -->
   <div class="form-row">
     <div class="form-group col-md-6">
       <label>EMP CODE</label>
       <input
         name="EMPCode"
         #EMPCode="ngModel"
-        [(ngModel)]="service.formData.EMPCode"
+        [(ngModel)]="formData.EMPCode"
         class="form-control"
       />
     </div>
+    <!-- Mobile contact input field -->
     <div class="form-group  col-md-6">
       <label>MOBILE</label>
       <input
         name="Mobile"
         #Mobile="ngModel"
-        [(ngModel)]="service.formData.Mobile"
+        [(ngModel)]="formData.Mobile"
         class="form-control"
       />
     </div>
   </div>
+  <!-- Submit button -->
   <div class="form-group">
     <button
       type="submit"
