@@ -1,3 +1,16 @@
-.fill-remain-space{
-    flex: 1 1 auto;
+/* separation between title and close button box dialog title bar */
+.fill-remain-space {
+  flex: 1 1 auto;
+}
+/* styling for title bar */
+.mat-toolbar {
+  background-color: cornflowerblue;
+  border-radius: 10px;
+  color: white;
+  margin-bottom: 20px;
+}
+.btn-dialog-close {
+  background-color: red;
+  border-radius: 30px;
+  color: black;
 }
