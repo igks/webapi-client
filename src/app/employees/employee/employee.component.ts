@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from 'src/app/shared/employee.service';
-import { NgForm } from '@angular/forms';
-import { MatDialogRef, MatToolbarModule } from '@angular/material';
-import Swal from 'sweetalert2';
+import { Component, OnInit } from "@angular/core";
+import { EmployeeService } from "src/app/shared/employee.service";
+import { NgForm } from "@angular/forms";
+import { MatDialogRef, MatToolbarModule } from "@angular/material";
+import Swal from "sweetalert2";
 
 @Component({
-  selector: 'app-employee',
-  templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.css']
+  selector: "app-employee",
+  templateUrl: "./employee.component.html",
+  styleUrls: ["./employee.component.css"]
 })
 export class EmployeeComponent implements OnInit {
   constructor(
@@ -28,7 +28,7 @@ export class EmployeeComponent implements OnInit {
 
   // Submit the data to database based on condition (register or update)
   onSubmit(form: NgForm) {
-    if (form.value.EmployeeID == null) this.insertRecord(form);
+    if (form.value.EmployeeID === null) this.insertRecord(form);
     else this.updateRecord(form);
     this.onCloseDialog();
   }
@@ -38,9 +38,9 @@ export class EmployeeComponent implements OnInit {
     this.service.postEmployee(form.value).subscribe(() => {
       this.service.refreshList();
       Swal.fire({
-        type: 'success',
-        title: 'Registered Successfuly',
-        text: 'New employee has been add to database!.'
+        type: "success",
+        title: "Registered Successfuly",
+        text: "New employee has been add to database!."
       });
     });
   }
@@ -50,9 +50,9 @@ export class EmployeeComponent implements OnInit {
     this.service.putEmployee(form.value).subscribe(() => {
       this.service.refreshList();
       Swal.fire({
-        type: 'success',
-        title: 'Modified Successfuly',
-        text: 'Employee has been updated!.'
+        type: "success",
+        title: "Modified Successfuly",
+        text: "Employee has been updated!."
       });
     });
   }

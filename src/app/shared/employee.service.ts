@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Employee } from './employee.model';
-import { HttpClient } from '@angular/common/http';
-import { MatTableDataSource } from '@angular/material/table';
+import { Injectable } from "@angular/core";
+import { Employee } from "./employee.model";
+import { HttpClient } from "@angular/common/http";
+import { MatTableDataSource } from "@angular/material/table";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class EmployeeService {
   // variable declaration
@@ -14,7 +14,8 @@ export class EmployeeService {
   dialogSubmit: string;
 
   // define the api url
-  readonly rootURL = 'http://webapiservice.somee.com/api/';
+  readonly rootURL = "http://webapiservice.somee.com/api/";
+  // readonly rootURL = "http://localhost:5000/api/";
 
   constructor(private http: HttpClient) {}
 
@@ -27,35 +28,35 @@ export class EmployeeService {
 
   // request data to server
   getEmployee() {
-    return this.http.get(this.rootURL + 'Employee');
+    return this.http.get(this.rootURL + "employees");
   }
 
   // post data to server
   postEmployee(formData: Employee) {
-    return this.http.post(this.rootURL + 'Employee', formData);
+    return this.http.post(this.rootURL + "employees", formData);
   }
 
   // update data to server
   putEmployee(formData: Employee) {
     return this.http.put(
-      this.rootURL + 'Employee/' + formData.EmployeeID,
+      this.rootURL + "employees/" + formData.EmployeeID,
       formData
     );
   }
 
   // delete data on server
   deleteEmployee(id: number) {
-    return this.http.delete(this.rootURL + 'Employee/' + id);
+    return this.http.delete(this.rootURL + "employees/" + id);
   }
 
   // reset form value
   resetForm() {
     this.formData = {
       EmployeeID: null,
-      FullName: '',
-      Position: '',
-      EMPCode: '',
-      Mobile: ''
+      FullName: "",
+      Position: "",
+      EMPCode: "",
+      Mobile: ""
     };
   }
 }
