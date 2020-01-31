@@ -20,6 +20,7 @@ export class EmployeeListComponent implements OnInit {
   // variable declaration
   employeeList = new MatTableDataSource<Employee>();
   searchKey: string;
+  loading: boolean;
   displayedColumns: string[] = [
     "EMPCode",
     "FullName",
@@ -42,6 +43,7 @@ export class EmployeeListComponent implements OnInit {
 
   // request the data from api service
   getAllEmployee() {
+    this.loading = false;
     this.service.refreshList();
     this.employeeList = this.service.employeeList;
   }
